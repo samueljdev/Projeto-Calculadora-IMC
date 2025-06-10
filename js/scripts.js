@@ -68,7 +68,33 @@ function createTable(data) {
     });
 }
 
+// limpeza de valores
+function cleanInputs() {
+    heightInput.value = "";
+    weightInput.value = "";
+    // imcNumber.className = "";
+    // imcInfo.className = "";
+}
+
+// função d validação de inputs
+function validDigits(text) {
+    return text.replace(/[^0-9,]/g, "");
+}
+
 // Inicializações
 createTable(data);
 
 // Eventos
+// mini validação de inputs
+[heightInput, weightInput].forEach((el) => {
+    el.addEventListener("input", (e) => {
+        const updatedValue = validDigits(e.target.value);
+        e.target.value = updatedValue;
+    });
+});
+
+// limpando campos
+clearBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    cleanInputs();
+});
