@@ -80,8 +80,8 @@ function createTable(data) {
 function cleanInputs() {
     heightInput.value = "";
     weightInput.value = "";
-    // imcNumber.className = "";
-    // imcInfo.className = "";
+    imcNumber.className = "";
+    imcInfo.className = "";
 }
 
 // função d validação de inputs
