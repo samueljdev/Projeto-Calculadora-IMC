@@ -81,6 +81,11 @@ function validDigits(text) {
     return text.replace(/[^0-9,]/g, "");
 }
 
+function calcImc(height, weight) {
+    const imc = (weight / (height * height)).toFixed(1);
+    return imc;
+}
+
 // Inicializações
 createTable(data);
 
@@ -91,6 +96,26 @@ createTable(data);
         const updatedValue = validDigits(e.target.value);
         e.target.value = updatedValue;
     });
+});
+
+calcBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const weight = +weightInput.value.replace(",", ".");
+    const height = +heightInput.value.replace(",", ".");
+
+    if (!weight || !height) return;
+
+    const imc = calcImc(height, weight);
+
+    let info;
+    data.forEach((item) => {
+        if (imc >= item.min && imc <= item.max) {
+            info = item.info;
+        }
+    });
+
+    if (!info) return;
 });
 
 // limpando campos
